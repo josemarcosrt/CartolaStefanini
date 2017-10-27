@@ -142,4 +142,25 @@ public class PartidaEntity {
     public void setUrl_transmissao(String url_transmissao) {
         this.url_transmissao = url_transmissao;
     }
+
+
+    @Override
+    public String toString() {
+        return "PartidaEntity{" +
+                "partida_id='" + partida_id + '\'' +
+                ", clube_casa_id='" + clube_casa_id + '\'' +
+                ", clube_casa_posicao='" + clube_casa_posicao + '\'' +
+                ", clube_visitante_id='" + clube_visitante_id + '\'' +
+                ", aproveitamento_mandante=" + aproveitamento_mandante +
+                ", aproveitamento_visitante=" + aproveitamento_visitante +
+                ", clube_visitante_posicao='" + clube_visitante_posicao + '\'' +
+                ", partida_data='" + partida_data + '\'' +
+                ", local='" + local + '\'' +
+                ", valida='" + valida + '\'' +
+                ", placar_oficial_mandante='" + placar_oficial_mandante + '\'' +
+                ", placar_oficial_visitante='" + placar_oficial_visitante + '\'' +
+                ", url_confronto='" + url_confronto + '\'' +
+                ", url_transmissao='" + url_transmissao + '\'' +
+                '}';
+    }
 }

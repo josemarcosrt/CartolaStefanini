@@ -13,6 +13,7 @@ public interface CartolaService {
     //https://api.cartolafc.globo.com/partidas
     public static final String BASE_URL = "https://api.cartolafc.globo.com/";
 
+
     @GET("partidas")
     Call<CartolaCatalog> listCartola();
 
@@ -20,6 +21,5 @@ public interface CartolaService {
     //@SerializedName("clubes")
     @GET("clubes")
     Call<CartolaCatalog> listClubes();
-
 
 }

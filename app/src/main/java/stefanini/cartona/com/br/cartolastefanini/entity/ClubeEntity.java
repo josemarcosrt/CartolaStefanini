@@ -1,5 +1,7 @@
 package stefanini.cartona.com.br.cartolastefanini.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -8,10 +10,21 @@ import java.io.Serializable;
 
 public class ClubeEntity implements Serializable{
 
+    @SerializedName("id")
     public String id;
-    public String escudo;
-    public String nomeClube;
+    @SerializedName("escudo")
+    public Escudo escudo;
+    @SerializedName("nome")
+    public String nome;
+    @SerializedName("posicao")
     public String posicao;
+    @SerializedName("abreviacao")
+    public String abreviacao;
+
+    public ClubeEntity(String nome, String posicao) {
+        this.nome = nome;
+        this.posicao = posicao;
+    }
 
     public ClubeEntity() {
 
@@ -25,20 +38,20 @@ public class ClubeEntity implements Serializable{
         this.id = id;
     }
 
-    public String getEscudo() {
-        return escudo;
+    public String getNome() {
+        return nome;
     }
 
-    public void setEscudo(String escudo) {
-        this.escudo = escudo;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getNomeClube() {
-        return nomeClube;
+    public String getAbreviacao() {
+        return abreviacao;
     }
 
-    public void setNomeClube(String nomeClube) {
-        this.nomeClube = nomeClube;
+    public void setAbreviacao(String abreviacao) {
+        this.abreviacao = abreviacao;
     }
 
     public String getPosicao() {
@@ -49,15 +62,47 @@ public class ClubeEntity implements Serializable{
         this.posicao = posicao;
     }
 
+    public void setEscudo(Escudo escudo) {
+        this.escudo = escudo;
+    }
+
     @Override
     public String toString() {
         return "ClubeEntity{" +
                 "id='" + id + '\'' +
-                ", escudo='" + escudo + '\'' +
-                ", nomeClube='" + nomeClube + '\'' +
+                ", nome='" + nome + '\'' +
                 ", posicao='" + posicao + '\'' +
+                ", abreviacao='" + abreviacao + '\'' +
+                ", escudo=" + escudo +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ClubeEntity that = (ClubeEntity) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (escudo != null ? !escudo.equals(that.escudo) : that.escudo != null) return false;
+        if (nome != null ? !nome.equals(that.nome) : that.nome != null) return false;
+        if (!posicao.equals(that.posicao)) return false;
+        return abreviacao != null ? abreviacao.equals(that.abreviacao) : that.abreviacao == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (escudo != null ? escudo.hashCode() : 0);
+        result = 31 * result + (nome != null ? nome.hashCode() : 0);
+        result = 31 * result + posicao.hashCode();
+        result = 31 * result + (abreviacao != null ? abreviacao.hashCode() : 0);
+        return result;
+    }
+
+
 }
 
 

@@ -3,7 +3,6 @@ package stefanini.cartona.com.br.cartolastefanini.adapter;
 import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,8 +11,6 @@ import java.util.List;
 import java.util.ArrayList;
 
 
-import stefanini.cartona.com.br.cartolastefanini.Clube;
-import stefanini.cartona.com.br.cartolastefanini.Partida;
 import stefanini.cartona.com.br.cartolastefanini.R;
 import stefanini.cartona.com.br.cartolastefanini.entity.ClubeEntity;
 import stefanini.cartona.com.br.cartolastefanini.entityview.ItemListViewClube;
@@ -37,8 +34,8 @@ public class AdapterClube extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return clubes.size();
-        //return itens.size();
+        return 9;
+        //return itens.size();clubes.size()
     }
 
     @Override
@@ -63,43 +60,50 @@ public class AdapterClube extends BaseAdapter {
         TextView nomeClube = (TextView) view.findViewById(R.id.lista_clube_personalizada_nome);
         TextView posicao  = (TextView) view.findViewById(R.id.lista_clube_personalizada_posicao);
 
-        //Categoria categoria = curso.getCategoria();
-
-        //populando as Views
-        //escudo.setText(partida.getLocal());
-        nomeClube.setText(clube.getNomeClube());
+        nomeClube.setText(clube.getNome());
         posicao.setText(clube.getPosicao());
-        //escudo.setImageResource(R.drawable.vasco_60x60);
 
-        if (clube.getNomeClube().equals("Vasco")) {
-            escudo.setImageResource(R.drawable.vasco_60x60);
-            //escudo.setImageS setImageResource("https://s.glbimg.com/es/sde/f/equipes/2016/07/29/Vasco-65.png")
-        } else if (clube.getNomeClube().equals("Flamengo")) {
-            escudo.setImageResource(R.drawable.flamengo_60x60);
-        } else if (clube.getNomeClube().equals("Corinthians")) {
-            escudo.setImageResource(R.drawable.corinthians_60x60);
-        }else if (clube.getNomeClube().equals("atletico")) {
-            escudo.setImageResource(R.drawable.atletico_mg_60x60);
-        }else if (clube.getNomeClube().equals("botafogo")) {
-            escudo.setImageResource(R.drawable.botafogo_60x60);
-        }else if (clube.getNomeClube().equals("cruzeiro")) {
-            escudo.setImageResource(R.drawable.cruzeiro_65);
-        }else if (clube.getNomeClube().equals("fluminense")) {
-          escudo.setImageResource(R.drawable.fluminense_60x60);
-        }else if (clube.getNomeClube().equals("palmeiras")) {
-          escudo.setImageResource(R.drawable.palmeiras_60x60);
-        }else if (clube.getNomeClube().equals("gremio")) {
-            escudo.setImageResource(R.drawable.gremio_60x60);
-        }else if (clube.getNomeClube().equals("santos")) {
-          escudo.setImageResource(R.drawable.santos_60x60);
+
+
+        switch(clube.getNome()){
+            case "Vasco":
+                escudo.setImageResource(R.drawable.vasco_60x60);
+                break;
+            case "Flamengo":
+                escudo.setImageResource(R.drawable.flamengo_60x60);
+                break;
+            case "Corinthians":
+                escudo.setImageResource(R.drawable.corinthians_60x60);
+                break;
+            case "Atlético-PR":
+                escudo.setImageResource(R.drawable.atleticopr);
+                break;
+            case "Botafogo":
+                escudo.setImageResource(R.drawable.botafogo_60x60);
+                break;
+            case "Cruzeiro":
+                escudo.setImageResource(R.drawable.cruzeiro_65);
+                break;
+            case "Fluminense":
+                escudo.setImageResource(R.drawable.fluminense_60x60);
+                break;
+            case "Palmeiras":
+                escudo.setImageResource(R.drawable.palmeiras_60x60);
+                break;
+            case "Grêmio":
+                escudo.setImageResource(R.drawable.gremio_60x60);
+                break;
+            case "Santos":
+                escudo.setImageResource(R.drawable.santos_60x60);
+                break;
+            case "Atlético-MG":
+                escudo.setImageResource(R.drawable.atletico_mg_60x60);
+                break;
         }
-
-
         //Essa lista deve mostrar a posição, o escudo e o nome do clube.
         //- A lista deve permitir uma ordenação crescente ou decrescente.
         return view;
     }
-
 
 //    @Override
 //    public int getCount() {

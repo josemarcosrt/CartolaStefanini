@@ -13,6 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import stefanini.cartona.com.br.cartolastefanini.adapter.AdapterClube;
 import stefanini.cartona.com.br.cartolastefanini.adapter.AdapterPartida;
 import stefanini.cartona.com.br.cartolastefanini.entity.ClubeEntity;
+import stefanini.cartona.com.br.cartolastefanini.entity.ExemploEntity;
 import stefanini.cartona.com.br.cartolastefanini.entity.PartidaEntity;
 import stefanini.cartona.com.br.cartolastefanini.utils.ClubeDes;
 
@@ -30,18 +31,26 @@ import com.google.gson.GsonBuilder;
 // Formatar a data
 import java.text.SimpleDateFormat;
 import android.provider.ContactsContract.Contacts.Data;
-
+import java.util.HashMap;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonArray;
 import android.widget.Toast;
 
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONException;
+
 import java.lang.reflect.Type;
 
 import java.io.IOException;
 
 import stefanini.cartona.com.br.cartolastefanini.entity.ClubeEntity;
+
+import java.util.Iterator;
 
 /**
  * Created by josemarcosramosteixeira on 10/24/17.
@@ -58,11 +67,10 @@ public class PartidaActivity extends AppCompatActivity { //FragmentActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patidas);
 
-        Gson gsonConverter = new GsonBuilder().registerTypeAdapter(ClubeEntity.class, new ClubeDes())
-                .create();
+
 
         Retrofit retrofit =  new Retrofit.Builder()
-                .baseUrl(CartolaService.BASE_URL)
+                .baseUrl("https://api.cartolafc.globo.com/") //.baseUrl(CartolaService.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -76,12 +84,58 @@ public class PartidaActivity extends AppCompatActivity { //FragmentActivity
                     Log.e(TAG,"---SUCESSO EM IMPRIMIR: ---");
 
                     CartolaCatalog catalog = response.body();
-                    List<PartidaEntity> listaPartidas = new ArrayList();
 
-                    for(Partida p : catalog.partidas) {
+
+                    Log.e(TAG,"--- TESTANDO JSON: ---");
+                    //Log.e(TAG, "CATALOGO CLUBE  " + String.format(": %s ",catalog.toString()));
+                    Log.e(TAG, "CATALOGO PARTIDAS  " + String.format(": %s ",catalog.partidas));
+                    Log.e(TAG, "CATALOGO CLUBE  " + String.format(": %s ",catalog.clubes.getVasco()));
+                    Log.e(TAG, "CATALOGO RODADA  " + String.format(": %s ",catalog.rodada));
+                    Log.e(TAG,"--- TESTANDO JSON: ---");
+
+
+
+                    Map<String, Object> mapClube = new HashMap<String, Object>();
+                    System.out.println("============ MAP TIME   ================");
+                    mapClube.put("362",catalog.clubes.getFlamengo());
+                    mapClube.put("263",catalog.clubes.getBotafogo());
+                    mapClube.put("264",catalog.clubes.getCorinthians());
+                    mapClube.put("265",catalog.clubes.getBahia());
+                    mapClube.put("266",catalog.clubes.getFluminense());
+                    mapClube.put("267",catalog.clubes.getVasco());
+                    mapClube.put("275",catalog.clubes.getPalmeiras());
+                    mapClube.put("363",catalog.clubes.getSaoPaulo());
+                    mapClube.put("282",catalog.clubes.getAtleticoMg());
+                    mapClube.put("283",catalog.clubes.getCruzeiro());
+                    mapClube.put("284",catalog.clubes.getGremio());
+                    mapClube.put("287",catalog.clubes.getVitoria());
+                    mapClube.put("292",catalog.clubes.getSport());
+                    mapClube.put("293",catalog.clubes.getAtleticoPR());
+                    mapClube.put("294",catalog.clubes.getCoritiba());
+                    mapClube.put("303",catalog.clubes.getPontePreta());
+                    mapClube.put("314",catalog.clubes.getAvai());
+                    mapClube.put("315",catalog.clubes.getChapecoense());
+                    mapClube.put("373",catalog.clubes.getAtleticoGO());
+                    System.out.println(mapClube.get("363"));
+                    System.out.println("========================================");
+                    ClubeEntity clubeEntity = new ClubeEntity();
+                    clubeEntity = (ClubeEntity) mapClube.get("363");
+                    System.out.println(clubeEntity.nome);
+                    System.out.println("========================================");
+                    //ClubeEntity clubeEntity = new ClubeEntity();
+                    clubeEntity = (ClubeEntity) mapClube.get("362");
+                    System.out.println(clubeEntity.nome);
+                    System.out.println("========================================");
+
+
+
+                    List<PartidaEntity> listaPartidas = new ArrayList();
+                    ClubeEntity clube = new ClubeEntity();
+
+                    for(PartidaEntity p : catalog.partidas) {
                         PartidaEntity partida = new PartidaEntity();
 
-
+                        /*
                         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
                         String dataString = p.getPartida_data(); //  <= sua data no formato de String;
                         try {
@@ -93,24 +147,45 @@ public class PartidaActivity extends AppCompatActivity { //FragmentActivity
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
-
+                        */
 
                         partida.setPartida_data(p.getPartida_data());
                         partida.setLocal(p.getLocal());
-                        partida.setClube_casa_id(p.getClube_casa_id());
+
+                        partida.setClube_casa_id(p.getClube_casa_id()); //clubeEntity.getAbreviacao()
                         partida.setClube_visitante_id(p.getClube_visitante_id());
 
+
+
                         listaPartidas.add(partida);
-                        //Log.e(TAG, "partida clube_casa_posicao " + String.format(" =  %s: ",p.clube_casa_posicao));
+                        Log.e(TAG, "CLUBE CASA X VISITANTE " + String.format(" %s X %s ",p.getClube_casa_id(),p.getClube_visitante_id()));
+
+                        String id;
+                        id = (String) p.getClube_casa_id();
+
+
+                        Log.e(TAG, "partida.getClube_casa_id()   %s " +partida.getClube_casa_id());
+
+
+                        clube = (ClubeEntity) mapClube.get(partida.getClube_casa_id());
+                        Log.e(TAG, "CLUBE "+clube);
+
+                        /*
+                        clubeEntity = (ClubeEntity) mapClube.get(partida.getClube_casa_id()); //clubeEntity = (ClubeEntity) mapClube.get("362");
+                        Log.e(TAG, "CLUBE "+clubeEntity);
+                        clubeEntity = (ClubeEntity) mapClube.get("363");
+                        Log.e(TAG, "CLUBE " + String.format(" %s %s",clubeEntity.nome,clubeEntity.getAbreviacao()));
+                        */
                     }
+
+
+
 
                     ListView listaDePartidas = (ListView) findViewById(R.id.listaPartidas);
                     //chamada da nossa implementação
                     AdapterPartida adapter1 = new AdapterPartida(listaPartidas,PartidaActivity.this);
                     listaDePartidas.setAdapter(adapter1);
 
-                    //Log.e(TAG, "CATALOGO CLUBE  " + String.format(": %s ",catalog.clubes));
-                    //Log.e(TAG, "CATALOGO RODADA  " + String.format(": %s ",catalog.rodada));
 
                     Log.e(TAG,"--SUCESSO EM IMPRIMIR: ---");
                 }else{
@@ -127,6 +202,7 @@ public class PartidaActivity extends AppCompatActivity { //FragmentActivity
         });
 
     }
+
 }
 
 
@@ -147,10 +223,48 @@ public class PartidaActivity extends AppCompatActivity { //FragmentActivity
 
 
 
+/*
+
+ Gson gsonConverter = new GsonBuilder().registerTypeAdapter(ClubeEntity.class, new ClubeDes())
+                .create();
 
 
+                    //String jsonString = {"id": 1, "nome": Raphael, "sexo": M}{"id": 2, "nome": teste, "sexo": M};
+
+                    String resposta1 = "{'Codigo': 2,'Descricao': 'Sem dados no perÃ­odo'}";
+                    System.out.println(resposta1);
+                    try {
+                        JSONObject jsonObj = new JSONObject(resposta1);
+                        JSONArray parentArray = jsonObj.getJSONArray("clubes");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    //JSONObject jsonObject = new JSONObject();
+                    //jsonObject.keys();
+                    //JSONObject jsonObject = new JSONObject();
+                    */
 
 
+//JSONObject parentObject = new JSONObject(catalog);
+
+//ArrayList<ExemploEntity> exampleList = new ArrayList<>();
+//JSONObject jsonObject = new JSONObject(catalog);
+                    /*
+
+
+                    Log.e(TAG,"--- TESTANDO JSON: ---");
+                    Log.e(TAG, "PARTIDAS " + String.format(" =  %s: ",catalog.partidas));
+                    for(Partida c : catalog.partidas) {
+                        Log.e(TAG, "partida clube_casa_posicao " + String.format(" =  %s: ", c.clube_casa_posicao));
+                    }
+                    Log.e(TAG, "CLUBES " + String.format(" =  %s: ",catalog.clubes));
+                    Log.e(TAG, "RODADA " + String.format(" =  %s: ",catalog.rodada));
+
+                    Log.e(TAG,"--- TESTANDO JSON: ---");
+
+
+                    */
 
 
 

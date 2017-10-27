@@ -1,5 +1,6 @@
 package stefanini.cartona.com.br.cartolastefanini;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,6 +11,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -29,6 +31,8 @@ import java.util.Iterator;
 /**
  * Created by josemarcosramosteixeira on 10/24/17.
  */
+import com.google.gson.Gson;
+//import com.google.gson.GsonBuilder;
 
 public class ClubeActivity extends AppCompatActivity { //FragmentActivity
 
@@ -42,36 +46,37 @@ public class ClubeActivity extends AppCompatActivity { //FragmentActivity
 
 
         //startActivity(new Intent(MainActivity.this,LoginActivity.class));
+        /*
         List<ClubeEntity> listaClubes = new ArrayList();
         ClubeEntity clube7 = new ClubeEntity();
-        clube7.setNomeClube("Corinthians");
+        clube7.setNome("Corinthians");
         clube7.setPosicao("1");
         ClubeEntity clube1 = new ClubeEntity();
-        clube1.setNomeClube("Gremio");
+        clube1.setNome("Gremio");
         clube1.setPosicao("2");
         ClubeEntity clube3 = new ClubeEntity();
-        clube3.setNomeClube("santos");
+        clube3.setNome("santos");
         clube3.setPosicao("3");
         ClubeEntity clube4 = new ClubeEntity();
-        clube4.setNomeClube("palmeiras");
+        clube4.setNome("palmeiras");
         clube4.setPosicao("4");
         ClubeEntity clube5 = new ClubeEntity();
-        clube5.setNomeClube("fluminense");
+        clube5.setNome("fluminense");
         clube5.setPosicao("5");
         ClubeEntity clube6 = new ClubeEntity();
-        clube6.setNomeClube("santos");
+        clube6.setNome("santos");
         clube6.setPosicao("6");
         ClubeEntity clube2 = new ClubeEntity();
-        clube2.setNomeClube("Flamengo");
+        clube2.setNome("Flamengo");
         clube2.setPosicao("7");
         ClubeEntity clube8 = new ClubeEntity();
-        clube8.setNomeClube("Vasco");
+        clube8.setNome("Vasco");
         clube8.setPosicao("8");
         ClubeEntity clube9 = new ClubeEntity();
-        clube9.setNomeClube("atletico");
+        clube9.setNome("atletico");
         clube9.setPosicao("9");
         ClubeEntity clube10 = new ClubeEntity();
-        clube10.setNomeClube("botafogo");
+        clube10.setNome("botafogo");
         clube10.setPosicao("10");
 
 
@@ -95,7 +100,7 @@ public class ClubeActivity extends AppCompatActivity { //FragmentActivity
         System.out.println(listaClubes);
         // Em ordem decrescente do fim do mandato
         Collections.sort(listaClubes, decrescente1);
-        System.out.println(listaClubes);
+        //System.out.println(listaClubes);
         Log.e(TAG,"---------------------- 10 PRIMEIROS CLUBES : -------------------------");
 
         List<ClubeEntity> clubesEntity = listaClubes;
@@ -104,6 +109,8 @@ public class ClubeActivity extends AppCompatActivity { //FragmentActivity
 
         AdapterClube adapter = new AdapterClube(listaClubes,this);
         listaDeClubes.setAdapter(adapter);
+
+         */
 
         //startActivity(new Intent(MainActivity.this,LoginActivity.class));
 
@@ -114,8 +121,7 @@ public class ClubeActivity extends AppCompatActivity { //FragmentActivity
 
 
         CartolaService service = retrofit.create(CartolaService.class);
-        Call<CartolaCatalog> requestCartola =  service.listCartola();
-
+        Call<CartolaCatalog> requestCartola =  service.listCartola(); //listCartola    service.listClubes();
         requestCartola.enqueue(new Callback<CartolaCatalog>() {
             @Override
             public  void onResponse(Call<CartolaCatalog> call, Response<CartolaCatalog> response){
@@ -124,14 +130,84 @@ public class ClubeActivity extends AppCompatActivity { //FragmentActivity
                     Log.e(TAG,"---SUCESSO EM IMPRIMIR: ---");
 
                     CartolaCatalog catalog = response.body();
-                    //Log.e(TAG, "CATALOGO CLUBE  " + String.format(": %s ",catalog.clubes));
-                    //Log.e(TAG, "CATALOGO RODADA  " + String.format(": %s ",catalog.rodada));
-//                    String json = "{\n" +
-//                            "   \"1\": \"name\",\n" +
-//                            "   \"2\": \"example\",\n" +
-//                            "   \"3\": \"loremipsum\",\n" +
-//                            "   \"4\": \"etc\"\n" +
-//                            "}";
+
+
+                    Map<Object, Object> mapClube = new HashMap<Object, Object>();
+                    System.out.println("============ MAP TIME   ================");
+                    mapClube.put("362",catalog.clubes.getFlamengo());
+                    mapClube.put("263",catalog.clubes.getBotafogo());
+                    mapClube.put("264",catalog.clubes.getCorinthians());
+                    mapClube.put("265",catalog.clubes.getBahia());
+                    mapClube.put("266",catalog.clubes.getFluminense());
+                    mapClube.put("267",catalog.clubes.getVasco());
+                    mapClube.put("275",catalog.clubes.getPalmeiras());
+                    mapClube.put("363",catalog.clubes.getSaoPaulo());
+                    mapClube.put("282",catalog.clubes.getAtleticoMg());
+                    mapClube.put("283",catalog.clubes.getCruzeiro());
+                    mapClube.put("284",catalog.clubes.getGremio());
+                    mapClube.put("287",catalog.clubes.getVitoria());
+                    mapClube.put("292",catalog.clubes.getSport());
+                    mapClube.put("293",catalog.clubes.getAtleticoPR());
+                    mapClube.put("294",catalog.clubes.getCoritiba());
+                    mapClube.put("303",catalog.clubes.getPontePreta());
+                    mapClube.put("314",catalog.clubes.getAvai());
+                    mapClube.put("315",catalog.clubes.getChapecoense());
+                    mapClube.put("373",catalog.clubes.getAtleticoGO());
+                    System.out.println(mapClube.get("363"));
+                    System.out.println("========================================");
+
+                    ClubeEntity clubeEntity = new ClubeEntity();
+                    clubeEntity = (ClubeEntity) mapClube.get("363");
+                    System.out.println(clubeEntity.nome);
+
+
+                    List<ClubeEntity> listaClubes = new ArrayList();
+
+
+                    listaClubes.add(catalog.clubes.getFlamengo());
+                    listaClubes.add(catalog.clubes.getBotafogo());
+                    listaClubes.add(catalog.clubes.getCorinthians());
+                    listaClubes.add(catalog.clubes.getBahia());
+                    listaClubes.add(catalog.clubes.getFluminense());
+                    listaClubes.add(catalog.clubes.getVasco());
+                    listaClubes.add(catalog.clubes.getPalmeiras());
+                    listaClubes.add(catalog.clubes.getSaoPaulo());
+                    listaClubes.add(catalog.clubes.getAtleticoMg());
+                    listaClubes.add(catalog.clubes.getCruzeiro());
+                    listaClubes.add(catalog.clubes.getGremio());
+                    listaClubes.add(catalog.clubes.getVitoria());
+                    listaClubes.add(catalog.clubes.getSport());
+                    listaClubes.add(catalog.clubes.getAtleticoPR());
+                    listaClubes.add(catalog.clubes.getCoritiba());
+                    listaClubes.add(catalog.clubes.getPontePreta());
+                    listaClubes.add(catalog.clubes.getAvai());
+                    listaClubes.add(catalog.clubes.getChapecoense());
+                    listaClubes.add(catalog.clubes.getAtleticoGO());
+
+
+                    Log.e(TAG,"---------------------- 10 PRIMEIROS CLUBES : -------------------------");
+                    Comparator crescente1 = new ComparatorClubeEntity();
+                    Comparator decrescente1 = Collections.reverseOrder(crescente1);
+                    // Em ordem crescente do início do mandato
+                    Collections.sort(listaClubes,crescente1);
+                    System.out.println(listaClubes);
+                    // Em ordem decrescente do fim do mandato
+                    //Collections.sort(listaClubes, decrescente1);
+                    //System.out.println(listaClubes);
+                    Log.e(TAG,"---------------------- 10 PRIMEIROS CLUBES : -------------------------");
+
+
+
+
+                    List<ClubeEntity> clubesEntity = listaClubes;
+                    ListView listaDeClubes = (ListView) findViewById(R.id.listaViewClubes);
+                    //chamada da nossa implementação
+
+                    AdapterClube adapter = new AdapterClube(listaClubes,ClubeActivity.this);
+                    listaDeClubes.setAdapter(adapter);
+
+
+
 
                     //ArrayList<ExemploEntity> exampleList = new ArrayList<>();
 //                    JSONObject jsonObject = new JSONObject(json);
@@ -145,10 +221,6 @@ public class ClubeActivity extends AppCompatActivity { //FragmentActivity
 //                        //exampleList.add(example);
 //                    }
 
-
-                    //for(Partida c : catalog.partidas) {
-                    //    Log.e(TAG, "partida clube_casa_posicao " + String.format(" =  %s: ", c.clube_casa_posicao));
-                    //}
                     Log.e(TAG,"--SUCESSO EM IMPRIMIR: ---");
                 }else{
                     Log.e(TAG,"----------------------ERRO EM IMPRIMIR: -------------------------");
@@ -195,8 +267,41 @@ public class ClubeActivity extends AppCompatActivity { //FragmentActivity
         }
     }
 
+    public class TesteUsuario{
+        private int id;
+        private String nome;
+        private String sexo;
 
+        public TesteUsuario(int id, String nome, String sexo) {
+            this.id = id;
+            this.nome = nome;
+            this.sexo = sexo;
+        }
 
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getNome() {
+            return nome;
+        }
+
+        public void setNome(String nome) {
+            this.nome = nome;
+        }
+
+        public String getSexo() {
+            return sexo;
+        }
+
+        public void setSexo(String sexo) {
+            this.sexo = sexo;
+        }
+    }
 
 
 }

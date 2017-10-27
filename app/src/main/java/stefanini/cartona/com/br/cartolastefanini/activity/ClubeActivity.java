@@ -11,8 +11,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import stefanini.cartona.com.br.cartolastefanini.CartolaCatalog;
 import stefanini.cartona.com.br.cartolastefanini.CartolaService;
-import stefanini.cartona.com.br.cartolastefanini.Partida;
 import stefanini.cartona.com.br.cartolastefanini.R;
+import stefanini.cartona.com.br.cartolastefanini.entity.PartidaEntity;
 
 /**
  * Created by josemarcosramosteixeira on 10/24/17.
@@ -51,7 +51,7 @@ public class ClubeActivity  extends AppCompatActivity { //FragmentActivity
                     //for(Clube cd : catalog.clubes.numero) {
 
                     //}
-                    for(Partida c : catalog.partidas) {
+                    for(PartidaEntity c : catalog.partidas) {
                         Log.e(TAG, "clube_casa_posicao" + String.format("%s: ", c));
                         Log.e(TAG, "clube_casa_posicao" + String.format("%s: ", c.clube_casa_posicao));
                     }

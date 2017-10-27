@@ -6,6 +6,7 @@ import retrofit2.Call;
 
 
 import stefanini.cartona.com.br.cartolastefanini.entity.ClubeEntity;
+import stefanini.cartona.com.br.cartolastefanini.entity.PartidaEntity;
 
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -27,7 +28,7 @@ public class CartolaCatalog {
 
 
     @JsonProperty("partidas")
-    public List<Partida> partidas;
+    public List<PartidaEntity> partidas;
     //public Clube clube;
 
     //@JsonProperty("clubes")
