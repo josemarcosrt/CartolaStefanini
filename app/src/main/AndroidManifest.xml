@@ -20,23 +20,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="stefanini.cartona.com.br.cartolastefanini.controllers.ClubeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.CALL" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name="stefanini.cartona.com.br.cartolastefanini.controllers.PartidaActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.CALL" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
 
     </application>
 
