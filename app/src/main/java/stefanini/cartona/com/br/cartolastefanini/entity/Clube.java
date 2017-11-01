@@ -1,4 +1,4 @@
-package stefanini.cartona.com.br.cartolastefanini;
+package stefanini.cartona.com.br.cartolastefanini.entity;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -22,10 +22,6 @@ import stefanini.cartona.com.br.cartolastefanini.entity.ClubeEntity;
  * Created by josemarcosramosteixeira on 10/23/17.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        //"clubes",
-        "262"
-})
 public class Clube {
 
     //@JsonProperty("id")
@@ -47,6 +43,8 @@ public class Clube {
     public ClubeEntity palmeiras;
     @SerializedName("276")
     public ClubeEntity saoPaulo;
+    @SerializedName("277")
+    public ClubeEntity santos;
     @SerializedName("282")
     public ClubeEntity atleticoMg;
     @SerializedName("283")
@@ -141,6 +139,14 @@ public class Clube {
 
     public void setSaoPaulo(ClubeEntity saoPaulo) {
         this.saoPaulo = saoPaulo;
+    }
+
+    public ClubeEntity getSantos() {
+        return santos;
+    }
+
+    public void setSantos(ClubeEntity santos) {
+        this.santos = santos;
     }
 
     public ClubeEntity getAtleticoMg() {
@@ -242,6 +248,7 @@ public class Clube {
                 ", fluminense=" + fluminense +
                 ", vasco=" + vasco +
                 ", palmeiras=" + palmeiras +
+                ", santos=" + santos +
                 ", saoPaulo=" + saoPaulo +
                 ", atleticoMg=" + atleticoMg +
                 ", cruzeiro=" + cruzeiro +
@@ -257,64 +264,3 @@ public class Clube {
                 '}';
     }
 }
-//    @JsonProperty("262")
-//    public Time time262;
-//    @JsonProperty("263")
-//    public Time time263;
-//
-//    public Clube(Time time262, Time time263) {
-//        this.time262 = time262;
-//        this.time263 = time263;
-//    }
-//
-//    public Time getTime262() {
-//        return time262;
-//    }
-//
-//    public void setTime262(Time time262) {
-//        this.time262 = time262;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "Clube{" +
-//                "time262=" + time262 +
-//                ", time263=" + time263 +
-//                '}';
-//    }
-
-
-
-    //@JsonProperty("clubes")
-    //public List<String> 262;
-
-    //@JsonProperty("nome")
-    //public List<String> nome;
-
-//    @JsonProperty("id")
-//    public List<String> id;
-//    @JsonProperty("nome")
-//    public List<String> nome;
-
-    //@JsonProperty("descricao")
-    //public List<Descricao> descricao;
-
-//    @JsonProperty("codico")
-//    public String getCodico() {
-//        return codico;
-//    }
-//    @JsonProperty("codico")
-//    public void setCodico(String codico) {
-//        this.codico = codico;
-//    }
-//
-//    @JsonProperty("descricao")
-//    public List<Descricao> getDescricao() {
-//        return descricao;
-//    }
-//    @JsonProperty("descricao")
-//    public void setDescricao(List<Descricao> descricao) {
-//        this.descricao = descricao;
-//    }
-
-//Call<Endereço> getEndereco(@Path("cep") String cep);

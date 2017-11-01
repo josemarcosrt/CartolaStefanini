@@ -12,7 +12,7 @@ public class ClubeEntity implements Serializable{
 
     @SerializedName("id")
     public String id;
-    @SerializedName("escudo")
+    @SerializedName("escudos")
     public Escudo escudo;
     @SerializedName("nome")
     public String nome;

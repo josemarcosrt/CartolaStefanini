@@ -22,6 +22,8 @@ public class PartidaEntity {
     public String placar_oficial_visitante;
     public String url_confronto;
     public String url_transmissao;
+    public String escudoTimeCasa;
+    public String escudoTimeVisitante;
 
 
     public PartidaEntity() {
@@ -143,6 +145,81 @@ public class PartidaEntity {
         this.url_transmissao = url_transmissao;
     }
 
+    public String getEscudoTimeCasa() {
+        return escudoTimeCasa;
+    }
+
+    public void setEscudoTimeCasa(String escudoTimeCasa) {
+        this.escudoTimeCasa = escudoTimeCasa;
+    }
+
+    public String getEscudoTimeVisitante() {
+        return escudoTimeVisitante;
+    }
+
+    public void setEscudoTimeVisitante(String escudoTimeVisitante) {
+        this.escudoTimeVisitante = escudoTimeVisitante;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PartidaEntity that = (PartidaEntity) o;
+
+        if (partida_id != null ? !partida_id.equals(that.partida_id) : that.partida_id != null)
+            return false;
+        if (clube_casa_id != null ? !clube_casa_id.equals(that.clube_casa_id) : that.clube_casa_id != null)
+            return false;
+        if (clube_casa_posicao != null ? !clube_casa_posicao.equals(that.clube_casa_posicao) : that.clube_casa_posicao != null)
+            return false;
+        if (clube_visitante_id != null ? !clube_visitante_id.equals(that.clube_visitante_id) : that.clube_visitante_id != null)
+            return false;
+        if (aproveitamento_mandante != null ? !aproveitamento_mandante.equals(that.aproveitamento_mandante) : that.aproveitamento_mandante != null)
+            return false;
+        if (aproveitamento_visitante != null ? !aproveitamento_visitante.equals(that.aproveitamento_visitante) : that.aproveitamento_visitante != null)
+            return false;
+        if (clube_visitante_posicao != null ? !clube_visitante_posicao.equals(that.clube_visitante_posicao) : that.clube_visitante_posicao != null)
+            return false;
+        if (partida_data != null ? !partida_data.equals(that.partida_data) : that.partida_data != null)
+            return false;
+        if (local != null ? !local.equals(that.local) : that.local != null) return false;
+        if (valida != null ? !valida.equals(that.valida) : that.valida != null) return false;
+        if (placar_oficial_mandante != null ? !placar_oficial_mandante.equals(that.placar_oficial_mandante) : that.placar_oficial_mandante != null)
+            return false;
+        if (placar_oficial_visitante != null ? !placar_oficial_visitante.equals(that.placar_oficial_visitante) : that.placar_oficial_visitante != null)
+            return false;
+        if (url_confronto != null ? !url_confronto.equals(that.url_confronto) : that.url_confronto != null)
+            return false;
+        if (url_transmissao != null ? !url_transmissao.equals(that.url_transmissao) : that.url_transmissao != null)
+            return false;
+        if (escudoTimeCasa != null ? !escudoTimeCasa.equals(that.escudoTimeCasa) : that.escudoTimeCasa != null)
+            return false;
+        return escudoTimeVisitante != null ? escudoTimeVisitante.equals(that.escudoTimeVisitante) : that.escudoTimeVisitante == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = partida_id != null ? partida_id.hashCode() : 0;
+        result = 31 * result + (clube_casa_id != null ? clube_casa_id.hashCode() : 0);
+        result = 31 * result + (clube_casa_posicao != null ? clube_casa_posicao.hashCode() : 0);
+        result = 31 * result + (clube_visitante_id != null ? clube_visitante_id.hashCode() : 0);
+        result = 31 * result + (aproveitamento_mandante != null ? aproveitamento_mandante.hashCode() : 0);
+        result = 31 * result + (aproveitamento_visitante != null ? aproveitamento_visitante.hashCode() : 0);
+        result = 31 * result + (clube_visitante_posicao != null ? clube_visitante_posicao.hashCode() : 0);
+        result = 31 * result + (partida_data != null ? partida_data.hashCode() : 0);
+        result = 31 * result + (local != null ? local.hashCode() : 0);
+        result = 31 * result + (valida != null ? valida.hashCode() : 0);
+        result = 31 * result + (placar_oficial_mandante != null ? placar_oficial_mandante.hashCode() : 0);
+        result = 31 * result + (placar_oficial_visitante != null ? placar_oficial_visitante.hashCode() : 0);
+        result = 31 * result + (url_confronto != null ? url_confronto.hashCode() : 0);
+        result = 31 * result + (url_transmissao != null ? url_transmissao.hashCode() : 0);
+        result = 31 * result + (escudoTimeCasa != null ? escudoTimeCasa.hashCode() : 0);
+        result = 31 * result + (escudoTimeVisitante != null ? escudoTimeVisitante.hashCode() : 0);
+        return result;
+    }
 
     @Override
     public String toString() {

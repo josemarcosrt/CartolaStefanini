@@ -10,7 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+
+
+        <activity android:name="stefanini.cartona.com.br.cartolastefanini.controllers.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,25 +21,27 @@
         </activity>
 
         <activity
-            android:name=".PartidaActivity">
+            android:name="stefanini.cartona.com.br.cartolastefanini.controllers.ClubeActivity">
             <intent-filter>
-                <action android:name="stefanini.cartona.com.br.cartolastefanini.PartidaActivity" />
+                <action android:name="android.intent.action.CALL" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".ClubeActivity">
+        <activity android:name="stefanini.cartona.com.br.cartolastefanini.controllers.PartidaActivity">
             <intent-filter>
-                <action android:name="stefanini.cartona.com.br.cartolastefanini.ClubeActivity" />
+                <action android:name="android.intent.action.CALL" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
 
 
     </application>
 
 </manifest>
+
+
+
+
