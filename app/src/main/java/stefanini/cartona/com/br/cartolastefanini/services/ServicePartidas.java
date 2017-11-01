@@ -14,13 +14,14 @@ import stefanini.cartona.com.br.cartolastefanini.entity.CartolaCatalog;
 import stefanini.cartona.com.br.cartolastefanini.entity.ClubeEntity;
 import stefanini.cartona.com.br.cartolastefanini.entity.PartidaEntity;
 
+import stefanini.cartona.com.br.cartolastefanini.interfaces.PartidaService;
 import stefanini.cartona.com.br.cartolastefanini.utils.*;
 
 /**
  * Created by josemarcosramosteixeira on 10/31/17.
  */
 
-public class ServicePartidas {
+public class ServicePartidas implements PartidaService{
 
     private static ServicePartidas instance = null;
     private ServicePartidas(){}

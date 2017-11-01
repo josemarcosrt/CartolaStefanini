@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import stefanini.cartona.com.br.cartolastefanini.interfaces.ClubeService;
+
 import stefanini.cartona.com.br.cartolastefanini.entity.CartolaCatalog;
 import stefanini.cartona.com.br.cartolastefanini.entity.ClubeEntity;
 import stefanini.cartona.com.br.cartolastefanini.utils.*;
@@ -13,7 +15,7 @@ import stefanini.cartona.com.br.cartolastefanini.utils.*;
  * Created by josemarcosramosteixeira on 10/31/17.
  */
 
-public class ServiceClubes {
+public class ServiceClubes implements ClubeService {
 
     private static ServiceClubes instance = null;
     private ServiceClubes(){}
